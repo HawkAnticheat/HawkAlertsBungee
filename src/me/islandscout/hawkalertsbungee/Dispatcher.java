@@ -46,6 +46,9 @@ public class Dispatcher implements Listener {
             return;
         msg = in.readUTF();
         String serverName = servers.get(e.getSender().getAddress());
+        if(serverName == null) {
+            return;
+        }
         BaseComponent[] bComponents = TextComponent.fromLegacyText(prefix + format.replace("%server%", serverName).replace("%flag%", msg));
         for(ProxiedPlayer pp : BungeeCord.getInstance().getPlayers()) {
             if(!pp.hasPermission("hawkalertsbungee.alert") || pp.getServer().getInfo().getName().equals(serverName))
